@@ -54,7 +54,7 @@ while True:
             emojioutput = "Эмодзи:"
             delimmer = "|"
             if name is None:
-                name = "Загрузка имени..."
+                name = "Анонимный продавец"
             if my is False:
                 my = Fore.GREEN + str(my)
                 name = Fore.GREEN + str(name)
