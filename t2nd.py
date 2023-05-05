@@ -2,6 +2,7 @@ import requests
 from colorama import init, Fore
 import time
 import os
+
 # Инициализация colorama
 init()
 
@@ -25,11 +26,11 @@ while True:
 
     # Сбор информации о лоте
     if trafficType == "data":
-        trafficType = Fore.GREEN + " ГБ"
+        trafficType = " ГБ"
     elif trafficType == "voice":
-        trafficType = Fore.GREEN + " минут(ы)"
+        trafficType = " минут(ы)"
     else:
-        trafficType = Fore.GREEN + " SMS"
+        trafficType = " SMS"
         
     print(Fore.GREEN + "Информация о лоте:")
     print(Fore.GREEN + "Лот:", volume + trafficType)
