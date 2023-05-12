@@ -11,9 +11,9 @@ cost = input("Введите цену лота: ")
 limit = input("Введите кол-во отображаемых продавцов: ")
  
 while True:
- 
+
     url = f"https://tele2.ru/api/exchange/lots?trafficType={trafficType}&volume={volume}&cost={cost}&offset=0&limit={limit}"
-   
+
     time.sleep(5)
    
     headers = {"User-Agent": "Mozilla/5.0 (Linux; Android 13; Redmi Note 10S) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Mobile Safari/537.36"}
@@ -33,7 +33,7 @@ while True:
     print(Fore.GREEN + "Лот:", volume + trafficType)
     print(Fore.GREEN + "Цена:", cost + " ₽")
     print("----------")
-
+    
     if "data" in data:
         for item in data["data"]:
             seller = item.get("seller", {})
@@ -43,7 +43,7 @@ while True:
             value = item.get("volume", {}).get("value")
             amount = item.get("cost", {}).get("amount")
             my = item.get("my")
-  
+
             nameis = "Имя:"
             botis = "Бот:"
             emojiis = "Эмодзи:"
@@ -64,5 +64,5 @@ while True:
                 emojiis = Fore.RED + str(emojiis)
                 botois = Fore.RED + str(botis)
                 nameis = Fore.RED + str(nameis)
-         
+
             print(nameis, name, delimmer, botis, my, delimmer, emojiis, emojis)
