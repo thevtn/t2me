@@ -72,4 +72,3 @@ while True:
          
             # Вывод информации на экран
             print(nameis, name, delimmer, botis, my, delimmer, emojiis, emojis)
-            print("----------")
