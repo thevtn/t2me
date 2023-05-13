@@ -30,7 +30,7 @@ while True:
     print(Fore.GREEN + "Информация о лоте:")
     print(Fore.GREEN + "Лот:", volume + trafficType)
     print(Fore.GREEN + "Цена:", cost + " ₽")
-    print("----------")
+    print("----------" + Fore.RESET)
 
     if "data" in data:
         for item in data["data"]:
