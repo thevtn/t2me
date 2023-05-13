@@ -2,6 +2,7 @@ import requests
 from colorama import init, Fore
 import time
 import os
+from requests.exceptions import JSONDecodeError, ConnectionError
 
 init()
 
@@ -15,8 +16,13 @@ while True:
     url = f"https://tele2.ru/api/exchange/lots?trafficType={trafficType}&volume={volume}&cost={cost}&offset=0&limit={limit}"
 
     headers = {"User-Agent": "Mozilla/5.0 (Linux; Android 13; Redmi Note 10S) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Mobile Safari/537.36"}
-    response = requests.get(url, headers=headers)
-    data = response.json()
+    try:
+       response = requests.get(url, headers=headers)
+       data = response.json()
+
+    except (JSONDecodeError, ConnectionError):
+        print( Fore.YELLOW + "Ошибка парсинга: вы использовали t2nd.py слишком долго. \n Tele2 посчитали вашу сессию подозрительной и временно заблокировали ваш IP. \n Совет: для продолжения мониторинга, включите VPN и используйте t2wd.py \n Если вы использовали t2wd.py, а не t2nd.py, то просто перезапустите программу :}")
+        raise SystemExit(1)
 
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -30,7 +36,7 @@ while True:
     print(Fore.GREEN + "Информация о лоте:")
     print(Fore.GREEN + "Лот:", volume + trafficType)
     print(Fore.GREEN + "Цена:", cost + " ₽")
-    print("----------" + Fore.RESET)
+    print(Fore.WHITE + "----------" + Fore.RESET)
 
     if "data" in data:
         for item in data["data"]:
